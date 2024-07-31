@@ -104,3 +104,14 @@ body{
         font-size: 6px
     }
 }
+.hidden-form {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease, height 0.5s ease;
+}
+
+.hidden-form.show {
+    opacity: 1;
+    height: auto;
+}
