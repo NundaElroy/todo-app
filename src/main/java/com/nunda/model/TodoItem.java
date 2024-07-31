@@ -1,10 +1,10 @@
 package com.nunda.model;
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import java.time.*;
+
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.Duration; 
 import java.lang.IllegalArgumentException;         
 
 @Entity
@@ -16,9 +16,9 @@ public class TodoItem{
     @Column(nullable = false)
     private String title;
     @Column
-    private LocalDateTime startTime;
+    private LocalTime startTime;
     @Column
-    private LocalDateTime endTime;
+    private LocalTime endTime;
     @Column
     private String category;
     @Column
@@ -30,8 +30,8 @@ public class TodoItem{
     public TodoItem(
         Long itemId, 
         String  title, 
-        LocalDateTime s,
-        LocalDateTime e,
+        LocalTime s,
+        LocalTime e,
         String category,
         boolean status
     ){
@@ -75,16 +75,16 @@ public class TodoItem{
     public void setTitle(String title) {
         this.title = title;
     }
-    public LocalDateTime getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
-    public LocalDateTime getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
-    public void setEndTime(LocalDateTime endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
     public String getCategory() {
@@ -98,6 +98,13 @@ public class TodoItem{
     }
     public void setStatus(boolean status) {
         this.status = status;
+    }
+public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
     @Override
     public String toString() {
