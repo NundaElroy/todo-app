@@ -29,7 +29,12 @@
                         <span class="task mt-4" th:text="${item.title}">Take kids to school</span>
                         <span class="time ml-2" th:text="${item.startTime.format(T(java.time.format.DateTimeFormatter).ofPattern('h:mm a')) + '-' + item.endTime.format(T(java.time.format.DateTimeFormatter).ofPattern('h:mm a'))}">8:00-8:30AM</span>
                         <span class="float-right" th:text="${item.endTime.minusMinutes(item.startTime.minute).minute + 'min'}">30min</span>
-                        <input type="checkbox" th:checked="${item.status}" />
+                        <span class="time ml-2" >
+                            <form id="statusForm" th:action="@{/updateStatus}" method="post">
+                                <input type="checkbox" id="statusCheckbox" name="status" th:checked="${item.status}" />
+                                <input type="hidden" name="itemId" th:value="${item.itemId}" />
+                            </form>
+                        </span>
                     </p>
                 </div>
             </div>
@@ -40,21 +45,18 @@
             
             Add Task for Today
         </p>
-                <form class="form-inline hidden-form" action="" method="post" id="item_form" >
+                <form class="form-inline hidden-form"  th:action="@{/new-item}" th:object ="${todoItem}" method="post" id="item_form" >
                     <div class="form-group mx-sm-3 mb-2">
-                      <input type="text" class="form-control" placeholder="category">
+                      <input type="text" class="form-control" th:field="*{category}" placeholder="category" name="category">
                     </div>
                     <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" class="form-control" placeholder="Title">
+                        <input type="text" class="form-control" th:field="*{title}"   placeholder="Title" name="title">
                     </div>
                     <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" class="form-control" placeholder="startTime">
+                        <input type="time" class="form-control" th:field="*{startTime}"  placeholder="startTime" name="startTime">
                     </div>
                     <div class="form-group mx-sm-3 mb-2">
-                        <input type="time" class="form-control" placeholder="startTime">
-                    </div>
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="time" class="form-control" placeholder="endTime">
+                        <input type="time" class="form-control" th:field="*{endTime}"  placeholder="endTime" name="endTime">
                     </div>
                     <button type="submit" class="btn btn-primary">Add item</button>
                 </form>
