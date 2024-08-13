@@ -18,6 +18,12 @@ public class TodoController{
 
 
     @GetMapping
+    public String index(){
+        return "redirect:/home";
+    }
+
+
+    @GetMapping("/home")
     public String welcome(Model model){
         //getting the items sorted by there dates 
         List<TodoItem> items = todoService.getAllItems();
@@ -27,11 +33,17 @@ public class TodoController{
         return "index";
     }
 
+    @GetMapping("/archive")
+    public String getArchive(Model model){
+        List<TodoItem> allItemsArrangedByDate = todoService.getAllItemsByDate();
+        model.addAttribute("items",allItemsArrangedByDate);
+        return "archive";
+    }
+
     @PostMapping("/new-item")
     public String submitForm(@ModelAttribute TodoItem todoItem){
          todoService.saveItem(todoItem);
          return "redirect:";
-
     }
     @PostMapping("/updateStatus")
     public String checkTodoItem(@RequestParam("itemId") Long itemId,@RequestParam("status") boolean status){
