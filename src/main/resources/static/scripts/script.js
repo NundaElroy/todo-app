@@ -14,3 +14,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
         form.submit();
     });
 });
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const navLinks = document.querySelectorAll('.navTask');
+
+    navLinks.forEach(link => {
+        link.classList.add('inactive-link'); // Add inactive class initially
+
+        link.addEventListener('click', function() {
+            navLinks.forEach(link => {
+                link.classList.remove('active-link');
+                link.classList.add('inactive-link'); // Add inactive class to all links
+            });
+            this.classList.add('active-link');
+            this.classList.remove('inactive-link'); // Remove inactive class from the clicked link
+        });
+    });
+});

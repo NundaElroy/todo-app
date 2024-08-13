@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     <title>todo</title>
 </head>
 <body>
@@ -17,7 +18,7 @@
     <div class="card">
         <!--Card Header-->
         <div class="card-header">
-            <p> <i class="fa fa-bars"></i> <i class="fa fa-calendar ml-4" aria-hidden="true"></i> <i class="fa fa-star ml-4" aria-hidden="true"></i> <span class="float-right"> <span class="mr-4 navTask">Task</span> <span class="mr-4">Archive</span> <i class="fa fa-search" aria-hidden="true"></i> </span> </p>
+            <p> <i class="fa fa-bars"></i> <i class="fa fa-calendar ml-4" aria-hidden="true"></i> <i class="fa fa-star ml-4" aria-hidden="true"></i> <span class="float-right"> <span class="mr-4 navTask"><a th:href="@{/home}">Task</a></span> <span class="mr-4 navTask"><a th:href="@{/archive}">Archive</a></span> <i class="fa fa-search" aria-hidden="true"></i> </span> </p>
         </div>
         <!--Card Body-->
         <div class="card-body">
@@ -42,7 +43,7 @@
                 <button style="border: none;" aria-label="Add item" id="btn-add">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                 </button>
-            
+
             Add Task for Today
         </p>
                 <form class="form-inline hidden-form"  th:action="@{/new-item}" th:object ="${todoItem}" method="post" id="item_form" >
@@ -60,7 +61,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Add item</button>
                 </form>
-              
+
             <p class="heading2"><span class="tomorrow">Tomorrow</span> <span class="float-right headingright">6h 30min</span> </p>
             <div th:each="item : ${items}">
                 <div th:if="${item.createdDate.toLocalDate().isEqual(T(java.time.LocalDate).now().plusDays(1))}">
@@ -72,12 +73,12 @@
                         <input type="checkbox" th:checked="${item.status}" />
                     </p>
                 </div>
-        </div>
+            </div>
     </div>
 </div>
  <!-- jQuery -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
- <script src="/scripts/script.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="/scripts/script.js" ></script>
 </body>
 </html>
