@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-$END$
+<div th:replace="~{fragments :: header}">
+    <!--header got from a fragment    -->
+</div>
+<div class="container text-center mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to Our Site!</h1>
+        <p class="lead">We are excited to have you here. Explore our features and join our community to stay connected.</p>
+        <hr class="my-4">
+        <p>Sign up now to start your journey with us, or login if you're already a member.</p>
+        <a class="btn btn-primary btn-lg mr-2" th:href="@{/features}" role="button">Learn more</a>
+        <a class="btn btn-success btn-lg" th:href="@{/register}" role="button">Join Now</a>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

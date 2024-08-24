@@ -6,37 +6,50 @@
     <title>Title</title>
 </head>
 <body>
-  <div class="container py-5" th:object="${user}">
-      <form th:action="@{/register}" method="post">
-          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-          <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" th:field="*{username}" class="form-control" id="username" placeholder="@janedoe">
-              <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger">Username Error</div>
-          </div>
-          <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" th:field="*{email}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-              <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">Username Error</div>
-          </div>
-          <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password"  th:field="*{password}"class="form-control" id="password" placeholder="Password">
-              <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">Username Error</div>
-          </div>
-          <div class="form-group">
-              <label for="Password1">Confirm Password</label>
-              <input type="password" th:field="*{confirmPassword}" class="form-control" id="Password1" placeholder="Password">
-              <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="text-danger">Username Error</div>
-          </div>
 
-          <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-  </div>
+    <!--header got from a fragment (You can uncomment this and use it later) -->
+    <div th:replace="~{fragments :: header}">
+        <!--header got from a fragment    -->
+    </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <div class="container py-5">
+    <form action="/register" method="post">
+        <!-- CSRF token placeholder (You can uncomment this and use it later) -->
+        <!-- <input type="hidden" name="_csrf" value=""/> -->
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" id="username" placeholder="@janedoe">
+            <!-- Error message placeholder (You can uncomment this and use it later) -->
+            <!-- <div class="text-danger">Username Error</div> -->
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <!-- Error message placeholder (You can uncomment this and use it later) -->
+            <!-- <div class="text-danger">Email Error</div> -->
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+            <!-- Error message placeholder (You can uncomment this and use it later) -->
+            <!-- <div class="text-danger">Password Error</div> -->
+        </div>
+        <div class="form-group">
+            <label for="Password1">Confirm Password</label>
+            <input type="password" name="confirmPassword" class="form-control" id="Password1" placeholder="Password">
+            <!-- Error message placeholder (You can uncomment this and use it later) -->
+            <!-- <div class="text-danger">Confirm Password Error</div> -->
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

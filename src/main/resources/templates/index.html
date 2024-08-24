@@ -12,6 +12,12 @@
     <title>todo</title>
 </head>
 <body>
+
+<div th:replace="~{fragments :: header}">
+    <!--header got from a fragment    -->
+</div>
+
+
     <!--For Page-->
 <div class="page">
     <!--Card-->
@@ -46,21 +52,28 @@
 
             Add Task for Today
         </p>
-                <form class="form-inline hidden-form"  th:action="@{/new-item}" th:object ="${todoItem}" method="post" id="item_form" >
-                    <div class="form-group mx-sm-3 mb-2">
-                      <input type="text" class="form-control" th:field="*{category}" placeholder="category" name="category">
+            <form class="form-inline hidden-form" th:action="@{/new-item}" th:object="${todoItem}" method="post" id="item_form">
+                <div class="form-row w-100">
+                    <div class="form-group col-md-2 mb-2" >
+                        <input type="text" class="form-control" th:field="*{category}" placeholder="Category" name="category" >
                     </div>
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" class="form-control" th:field="*{title}"   placeholder="Title" name="title">
+                    <div class="form-group col-md-2 mb-2">
+                        <input type="text" class="form-control" th:field="*{title}" placeholder="Title" name="title" >
                     </div>
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="time" class="form-control" th:field="*{startTime}"  placeholder="startTime" name="startTime">
+                    <div class="form-group col-md-2 mb-2">
+                        <input type="date" class="form-control" placeholder="Date" name="date">
                     </div>
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="time" class="form-control" th:field="*{endTime}"  placeholder="endTime" name="endTime">
+                    <div class="form-group col-md-2 mb-2">
+                        <input type="time" class="form-control" th:field="*{startTime}" placeholder="Start Time" name="startTime">
                     </div>
-                    <button type="submit" class="btn btn-primary">Add item</button>
-                </form>
+                    <div class="form-group col-md-2 mb-2">
+                        <input type="time" class="form-control" th:field="*{endTime}" placeholder="End Time" name="endTime">
+                    </div>
+                    <div class="form-group col-md-2 mb-2">
+                        <button type="submit" class="btn btn-primary w-100">Add Item</button>
+                    </div>
+                </div>
+            </form>
 
             <p class="heading2"><span class="tomorrow">Tomorrow</span> <span class="float-right headingright">6h 30min</span> </p>
             <div th:each="item : ${items}">
