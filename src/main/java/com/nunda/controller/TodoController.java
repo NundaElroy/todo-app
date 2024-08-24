@@ -17,9 +17,14 @@ public class TodoController{
     private TodoService todoService;
 
 
-    @GetMapping
+    @GetMapping({"","/"})
     public String index(){
-        return "redirect:/home";
+        return "guesthome";
+    }
+
+    @GetMapping("/features")
+    public String features(){
+        return "features";
     }
 
 
@@ -52,5 +57,7 @@ public class TodoController{
         todoService.saveItem(todoItem);
         return "redirect:";
     }
+
+
 
 }
