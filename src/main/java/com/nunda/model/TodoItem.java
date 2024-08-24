@@ -26,6 +26,11 @@ public class TodoItem{
     @CreationTimestamp
     private LocalDateTime createdDate;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id") // Specifies the foreign key column name
+    private User user;
+
+
     public TodoItem(){}
 
     
@@ -35,7 +40,8 @@ public class TodoItem{
         LocalTime s,
         LocalTime e,
         String category,
-        boolean status
+        boolean status,
+        User user
     ){
         this.itemId = itemId;
         this.title = title;
@@ -43,6 +49,7 @@ public class TodoItem{
         this.endTime = e;
         this.category = category;
         this.status = status ;
+        this.user = user;
 
     }
 
@@ -101,9 +108,16 @@ public class TodoItem{
     public void setStatus(boolean status) {
         this.status = status;
     }
-public LocalDateTime getCreatedDate() {
+    public LocalDateTime getCreatedDate() {
         return createdDate;
     }
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
