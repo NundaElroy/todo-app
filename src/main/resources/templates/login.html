@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-spring-security">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -13,20 +14,20 @@
 
 
 <div class="container py-5">
-    <!--<div th:if="${param.error}">-->
-    <!--    Invalid username and password.</div>-->
-    <!--<div th:if="${param.logout}">-->
-    <!--    You have been logged out.</div>-->
-    <form method="post" action="@{/login}">
-        <!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+    <div th:if="${param.error}">
+        Invalid username and password.</div>
+    <div th:if="${param.logout}">
+        You have been logged out.</div>
+    <form method="post" th:action="@{/login}">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
         </div>
         <!--    <div class="form-check">-->
         <!--        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
