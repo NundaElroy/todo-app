@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>User Profile</title>
+</head>
+<body>
+<div th:replace="~{fragments :: header}">
+    <!--header fragment-->
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Profile Picture Section -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Profile Picture</h4>
+                </div>
+                <div class="card-body text-center">
+<!--                    <img th:src="@{${user.profilePicture}}" alt="Profile Picture" class="img-thumbnail rounded-circle mb-3" width="150" height="150">-->
+                    <img src="#" alt="Profile Picture" class="img-thumbnail rounded-circle mb-3" width="150" height="150">
+                    <form th:action="@{/uploadProfilePicture}" method="post" enctype="multipart/form-data">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+                        <div class="form-group">
+                            <input type="file" class="form-control-file" name="profilePicture">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload New Picture</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Details Section -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4>User Details</h4>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/updateProfile}" method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email"  placeholder="Enter your email">
+                        </div>
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter your new password">
+                        </div>
+                        <!-- Confirm Password -->
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password:</label>
+                            <input type="password" class="form-control" id="confirmPassword"  placeholder="Confirm your new password">
+                        </div>
+                        <button type="submit" class="btn btn-success">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
