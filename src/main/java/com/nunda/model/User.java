@@ -102,4 +102,12 @@ public class User {
         todoItems.remove(todoItem);
         todoItem.setUser(null);
     }
+
+    public List<TodoItem> getTodoItems() {
+        return todoItems;
+    }
+
+    public void setTodoItems(List<TodoItem> todoItems) {
+        this.todoItems = todoItems;
+    }
 }

@@ -1,8 +1,11 @@
 package com.nunda.service;
 
+import com.nunda.model.TodoItem;
 import com.nunda.model.User;
 import com.nunda.repository.UserRepo;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -27,5 +30,24 @@ public class UserService {
 
             userRepo.save(user);
         }
+
+
+    public void addToTodoItemsList(User user, TodoItem todoItem) {
+        // Set the user in the TodoItem
+        todoItem.setUser(user);
+
+        // Add the TodoItem to the user's list
+        List<TodoItem> todoItems = user.getTodoItems();
+        todoItems.add(todoItem);
+
+        // Save the user, which will also save the TodoItem
+        userRepo.save(user);
+    }
+
+
+    public User getUserByUsername(String email){
+          return userRepo.findByEmail(email);
+    }
+
 
 }
