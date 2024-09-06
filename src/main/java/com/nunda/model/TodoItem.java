@@ -43,7 +43,6 @@ public class TodoItem{
         LocalTime e,
         String category,
         boolean status,
-        LocalDateTime date,
         User user
     ){
         this.itemId = itemId;
@@ -121,13 +120,7 @@ public class TodoItem{
         this.user = user;
     }
 
-    public LocalDateTime getDate() {
-        return date;
-    }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
 
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;

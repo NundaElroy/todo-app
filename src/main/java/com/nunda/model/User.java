@@ -26,6 +26,10 @@ public class User {
     @Column(nullable = false)
     private String roles = "client";
 
+
+    @Column(nullable = true)
+    public  String filename;
+
     @Column
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -38,10 +42,11 @@ public class User {
 
     }
 
-    public User(String username, String password, String email,List<TodoItem> todoItems) {
+    public User(String username, String password, String email,List<TodoItem> todoItems,String filename) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.filename = filename;
         this.todoItems = todoItems;
     }
 
@@ -109,5 +114,13 @@ public class User {
 
     public void setTodoItems(List<TodoItem> todoItems) {
         this.todoItems = todoItems;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 }
