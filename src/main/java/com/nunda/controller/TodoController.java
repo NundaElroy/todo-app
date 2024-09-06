@@ -80,7 +80,16 @@ public class TodoController{
         todoService.saveItem(todoItem);
         return "redirect:/home";
     }
+    @PostMapping("/deleteItem")
+    public String deleteTodoItem(@RequestParam("itemId") Long itemId){
+        todoService.deleteItem(itemId);
+        return  "redirect:/home";
+    }
 
-
+    @PostMapping("/deleteTodoItemFromArchive")
+    public String deleteTodoItemFromArchive(@RequestParam("itemId") Long itemId){
+        todoService.deleteItem(itemId);
+        return  "redirect:/archive";
+    }
 
 }
