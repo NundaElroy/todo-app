@@ -22,11 +22,7 @@ public class UserService {
         }
 
         public void save(User user){
-            emailService.sendEmail(
-                    user.getEmail(),
-                    "Registration Confirmation",
-                    "Thank you for registering, " + user.getUsername() + "!"
-            );
+
 
             userRepo.save(user);
         }
