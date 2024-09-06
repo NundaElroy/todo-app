@@ -15,7 +15,7 @@
     <!--header fragment-->
 </div>
 
-<div class="container mt-5">
+<div class="container mt-5" th:object="${user}">
     <div class="row">
         <!-- Profile Picture Section -->
         <div class="col-md-4">
@@ -24,13 +24,19 @@
                     <h4>Profile Picture</h4>
                 </div>
                 <div class="card-body text-center">
-<!--                    <img th:src="@{${user.profilePicture}}" alt="Profile Picture" class="img-thumbnail rounded-circle mb-3" width="150" height="150">-->
-                    <img src="#" alt="Profile Picture" class="img-thumbnail rounded-circle mb-3" width="150" height="150">
+                    <img th:src="@{images/{filename}(filename=${user.filename})}" alt="Profile Picture" class="img-thumbnail rounded-circle mb-3" width="150" height="150">
+
+                    <!-- Display success message -->
+                    <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+
+                    <!-- Display error message -->
+                    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
                     <form th:action="@{/uploadProfilePicture}" method="post" enctype="multipart/form-data">
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
                         <div class="form-group">
-                            <input type="file" class="form-control-file" name="profilePicture">
+                            <input type="file" class="form-control-file" name="image">
                         </div>
                         <button type="submit" class="btn btn-primary">Upload New Picture</button>
                     </form>
@@ -51,7 +57,7 @@
                         <!-- Email -->
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" class="form-control" id="email"  placeholder="Enter your email">
+                            <input type="email" class="form-control" id="email" th:value="${user.email}"  placeholder="Enter your email">
                         </div>
                         <!-- Password -->
                         <div class="form-group">

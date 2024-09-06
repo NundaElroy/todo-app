@@ -41,16 +41,19 @@
                     <a class="nav-link" th:href="@{/home}">Todos</a>
                 </li>
             </ul>
+            <!-- header.html fragment -->
             <div class="nav-item" sec:authorize="isAuthenticated()">
+                <!-- Display the profile picture dynamically -->
                 <a th:href="@{/userprofile}" style="text-decoration: none; color: inherit;">
-                    <img src="/images/janedoe.jpeg" alt="Profile Picture" class="rounded-circle" style="width: 40px; height: 40px; margin-right: 10px;">
-                    <span class="mr-3">Jane Doe</span>
+                    <img th:src="@{images/{filename}(filename=${user.filename})}" alt="Profile Picture" class="rounded-circle" style="width: 40px; height: 40px; margin-right: 10px;">
+                    <span class="mr-3" th:text="${user.username}">Username</span>
                 </a>
                 <form action="/logout" method="post" style="display: inline;">
                     <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                     <button type="submit" class="btn btn-danger">Logout</button>
                 </form>
             </div>
+
 
             <div class="nav-item" sec:authorize="!isAuthenticated()">
                 <a th:href="@{/login}" class="btn btn-primary mr-2">Login</a>

@@ -30,26 +30,36 @@
             <div th:each="item : ${items}">
                 <div>
                     <p>
-                        <i class="fa fa-calendar mr-2" aria-hidden="true"></i>
+                    <form th:action="@{/deleteTodoItemFromArchive}" method="post" style="display:inline;">
+                        <input type="hidden" name="itemId" th:value="${item.itemId}" />
+                        <button type="submit" class="btn btn-link p-0" aria-label="Delete" id="delete" style="display:inline; border:none; background:none;">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </form>
                         <span class="task mt-4" th:text="${item.title}">Take kids to school</span>
                         <span class="time ml-2" th:text="${item.startTime.format(T(java.time.format.DateTimeFormatter).ofPattern('h:mm a')) + '-' + item.endTime.format(T(java.time.format.DateTimeFormatter).ofPattern('h:mm a'))}">8:00-8:30AM</span>
                         <span class="float-right" th:text="${item.endTime.minusMinutes(item.startTime.minute).minute + 'min'}">30min</span>
                         <span class="time ml-2" >
-                            <form id="statusForm" th:action="@{/updateStatus}" method="post">
-                                <input type="checkbox" id="statusCheckbox" name="status" th:checked="${item.status}" />
-                                <input type="hidden" name="itemId" th:value="${item.itemId}" />
-                            </form>
+<!--                            <form id="statusForm" th:action="@{/updateStatus}" method="post"  style="display:inline;">-->
+<!--                                <input type="checkbox" id="statusCheckbox" name="status" value="true" th:checked="${item.status}" />-->
+<!--                                &lt;!&ndash; Hidden input to handle unchecked case &ndash;&gt;-->
+<!--                                <input type="hidden" name="status" value="false" />-->
+<!--                                <input type="hidden" name="itemId" th:value="${item.itemId}" />-->
+<!--                            </form>-->
+                           <span th:if="${item.status}">
+                                <i class="fa fa-check" style="color:green;" aria-hidden="true"></i>
+                            </span>
+                            <span th:unless="${item.status}">
+                                <i class="fa fa-check" style="color:red;" aria-hidden="true"></i>
+                            </span>
+
+
+
                         </span>
                     </p>
                 </div>
             </div>
-            <p class="text-muted">
-                <button style="border: none;" aria-label="Add item" id="btn-add">
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                </button>
 
-
-            </p>
 
         </div>
     <!-- jQuery -->
