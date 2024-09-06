@@ -31,3 +31,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Select the delete button
+    const deleteButton = document.getElementById('delete');
+
+    if (deleteButton) {
+        deleteButton.addEventListener('click', function(event) {
+            // Display a confirmation alert
+            const isConfirmed = confirm("Are you sure you want to delete this item?");
+
+            // If user cancels, prevent form submission
+            if (!isConfirmed) {
+                event.preventDefault(); // Prevents form submission
+            }
+        });
+    }
+});
