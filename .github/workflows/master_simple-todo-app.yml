@@ -16,12 +16,6 @@ jobs:
         with:
           java-version: '21'
           distribution: 'microsoft'
-      - name: Create temporary application.properties
-        run: |
-          echo "spring.datasource.url=jdbc:mysql://localhost:3306/testdb" > src/main/resources/application.properties
-          echo "spring.datasource.username=test" >> src/main/resources/application.properties
-          echo "spring.datasource.password=test" >> src/main/resources/application.properties
-
       - name: Build with Maven
         run: mvn clean install
       - name: Build with Maven
